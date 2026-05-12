@@ -3,7 +3,11 @@ import { User } from './model';
 import { sendResponse } from '../../utils/response';
 import { authMiddleware, roleMiddleware } from '../../middlewares/auth';
 
-const userRoutes = new Hono();
+type Variables = {
+  user: any;
+};
+
+const userRoutes = new Hono<{ Variables: Variables }>();
 
 userRoutes.use('*', authMiddleware);
 
