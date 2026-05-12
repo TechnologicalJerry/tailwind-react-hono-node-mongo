@@ -3,7 +3,11 @@ import { Product } from './model';
 import { sendResponse } from '../../utils/response';
 import { authMiddleware, roleMiddleware } from '../../middlewares/auth';
 
-const productRoutes = new Hono();
+type Variables = {
+  user: any;
+};
+
+const productRoutes = new Hono<{ Variables: Variables }>();
 
 productRoutes.get('/', async (c) => {
   const page = parseInt(c.req.query('page') || '1');
